@@ -1,7 +1,7 @@
 <?php session_start(); // Inicia a sessão ?>
 
-<?php include_once 'comum/topo.php'; ?>
-        <div>Inventory Control</div>
+
+        <div>PHP Inventory Control - OOP</div>
         <ol type="1">
             <li><a href="cad_estoque.php">cadastro de Estoques</a></li>
             <li><a href="cad_dep.php">cadastro de Departamentos</a></li>
@@ -12,4 +12,3 @@
 
         </ol>
 
-<?php include_once 'comum/base.php';
