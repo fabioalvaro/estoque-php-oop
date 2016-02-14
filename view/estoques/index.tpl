@@ -6,11 +6,11 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1> Cadastro de Estoques</h1>                  
-                {if $erro neq "" }
+                {if $mensagem neq "" }
                 <div class="alert alert-danger" role="alert">
                   <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                   <span class="sr-only">Aviso:</span>
-                  {$erro|default:""}
+                  {$mensagem|default:""}
                 </div>
                 {/if}
                 <div class="row">

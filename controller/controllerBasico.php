@@ -23,6 +23,10 @@ class controllerBasico {
         $this->smarty->caching = false;
         $this->smarty->setTemplateDir('/var/www/htdocs/estoque-php-oop/view/');
     }
+    
+    public function ShowMessage($mensagem=""){
+         $_SESSION['msg'] = $mensagem;
+    }
 
     /** 
      * 

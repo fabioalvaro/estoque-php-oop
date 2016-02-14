@@ -9,8 +9,7 @@ class departamento extends controllerBasico {
 
     // index do Controller
     public function index() {
-        //var_dump($_REQUEST);
-        //die('opa');
+
         $acao = isset($_REQUEST['acao']) ? $_REQUEST['acao'] : null;
         if ($acao == 'novo') {
             $this->novo();
@@ -20,30 +19,22 @@ class departamento extends controllerBasico {
             $this->geraFormExcluir($_REQUEST);
         } elseif ($acao == 'excluirdefinitivo') {
             $this->remover($_REQUEST);
-        }elseif ($acao == 'erro') {
-             $pagina = 1;
-
-            $html_grid = $this->geraGrid();
-            $html_frm_novo = $this->geraFormNovo();
-            //die('opa');
-
-            $this->smarty->assign("grid", $html_grid);
-            $this->smarty->assign("erro", $_SESSION['erro_msg']);
-            $this->smarty->assign("frm_novo", $html_frm_novo);
-            $this->smarty->assign("paginador", $this->paginador($pagina, 100));
-            $this->smarty->display('departamento/index.tpl');
-            
-        }elseif ($acao == 'atualizar') {
+        } elseif ($acao == 'atualizar') {
             $this->atualizar($_REQUEST);
         } elseif ($acao == 'salvar') {
             $this->salvar($_POST);
-        } elseif ($acao == null) {
+        } elseif ($acao == null || $acao == 'msg') {
+            if ($acao == null) {
+                unset($_SESSION['msg']);
+            }
             $pagina = 1;
 
             $html_grid = $this->geraGrid();
             $html_frm_novo = $this->geraFormNovo();
-          
-            $this->smarty->assign("erro", "");
+
+            $msg = isset($_SESSION['msg']) ? $_SESSION['msg'] : "";
+            $this->smarty->assign("mensagem", $msg);
+
             $this->smarty->assign("grid", $html_grid);
             $this->smarty->assign("frm_novo", $html_frm_novo);
             $this->smarty->assign("paginador", $this->paginador($pagina, 100));
@@ -62,12 +53,9 @@ class departamento extends controllerBasico {
      * Funcao de Adicionar Departamentos
      */
     public function geraFormAlterar($request) {
-        //var_dump($request);
-
+        
         $model = new modelDepartamento();
-        $registro = $model->getDepartamentoById($request['id']);
-
-        // var_dump($registro);
+        $registro = $model->getDepartamentoById($request['id']);     
 
         $this->smarty->assign("dados", $registro);
         $this->smarty->display('departamento/alterar.tpl');
@@ -81,8 +69,6 @@ class departamento extends controllerBasico {
 
         $model = new modelDepartamento();
         $registro = $model->getDepartamentoById($request['id']);
-
-
 
         $this->smarty->assign("dados", $registro);
         $this->smarty->display('departamento/excluir.tpl');
@@ -105,23 +91,14 @@ class departamento extends controllerBasico {
     public function atualizar($postlocal) {
         $model = new modelDepartamento();
         $model->updateDepartamento($postlocal);
-        header('Location: cad_dep.php');
+        $this->ShowMessage("Registro Alterado com sucesso");
+        header('Location: cad_dep.php?acao=msg');
     }
 
     public function remover($postlocal) {
         $model = new modelDepartamento();
         $model->deleteDepartamento($postlocal);
         header('Location: cad_dep.php');
-    }
-
-    /**
-     * Funcao de Adicionar Departamentos
-     */
-    public function editar() {
-
-        $this->smarty->assign("msg", "editado com sucesso");
-
-        $this->smarty->display('departamento/index.tpl');
     }
 
     /**
@@ -146,14 +123,16 @@ class departamento extends controllerBasico {
      */
     public function validaRegistro($registro) {
         $ok = true;
-        $msg_erro="";
-        
-        if ($registro['descricao']==="") {$msg_erro.="O Campo Descrição é obrigatorio! ";} 
-        
-        if($msg_erro!="") {
+        $msg_erro = "";
+
+        if ($registro['descricao'] === "") {
+            $msg_erro.="O Campo Descrição é obrigatorio! ";
+        }
+
+        if ($msg_erro != "") {
             $ok = false;
-            $_SESSION['erro_msg'] = $msg_erro. " Verifique os dados.";
-            header('Location: cad_dep.php?acao=erro');
+            $_SESSION['msg'] = $msg_erro . " Verifique os dados.";
+            header('Location: cad_dep.php?acao=msg');
         }
         return $ok;
     }

@@ -18,30 +18,24 @@ class estoques extends controllerBasico {
             $this->geraFormExcluir($_REQUEST);
         } elseif ($acao == 'excluirdefinitivo') {
             $this->remover($_REQUEST);
-        }elseif ($acao == 'erro') {
-             $pagina = 1;
-
-            $html_grid = $this->geraGrid();
-            $html_frm_novo = $this->geraFormNovo();
-            //die('opa');
-
-            $this->smarty->assign("grid", $html_grid);
-            $this->smarty->assign("erro", $_SESSION['erro_msg']);
-            $this->smarty->assign("frm_novo", $html_frm_novo);
-            $this->smarty->assign("paginador", $this->paginador($pagina, 100));
-            $this->smarty->display('estoques/index.tpl');
-            
         }elseif ($acao == 'atualizar') {
             $this->atualizar($_REQUEST);
         } elseif ($acao == 'salvar') {
             $this->salvar($_POST);
-        } elseif ($acao == null) {
+        } elseif ($acao == null || $acao == 'msg') {
+           
             $pagina = 1;
 
             $html_grid = $this->geraGrid();
             $html_frm_novo = $this->geraFormNovo();
+            //Sistema de Mensagens
+            if ($acao==null){ unset($_SESSION['msg']);}
+            
+            $msg= isset($_SESSION['msg'])?$_SESSION['msg']:"";
+            
+            $this->smarty->assign("mensagem", $msg);            
           
-            $this->smarty->assign("erro", "");
+           
             $this->smarty->assign("grid", $html_grid);
             $this->smarty->assign("frm_novo", $html_frm_novo);
             $this->smarty->assign("paginador", $this->paginador($pagina, 100));
@@ -103,7 +97,8 @@ class estoques extends controllerBasico {
     public function atualizar($postlocal) {
         $model = new modelEstoques();
         $model->updateEstoques($postlocal);
-        header('Location: cad_estoque.php');
+        $this->ShowMessage("Registro Alterado com sucesso");      
+        header('Location: cad_estoque.php?acao=msg');
     }
 
     public function remover($postlocal) {
@@ -112,15 +107,7 @@ class estoques extends controllerBasico {
         header('Location: cad_estoque.php');
     }
 
-    /**
-     * Funcao de Adicionar Estoques
-     */
-    public function editar() {
 
-        $this->smarty->assign("msg", "editado com sucesso");
-
-        $this->smarty->display('estoques/index.tpl');
-    }
 
     /**
      * 
@@ -150,8 +137,8 @@ class estoques extends controllerBasico {
         
         if($msg_erro!="") {
             $ok = false;
-            $_SESSION['erro_msg'] = $msg_erro. " Verifique os dados.";
-            header('Location: cad_estoque.php?acao=erro');
+            $_SESSION['msg'] = $msg_erro. " Verifique os dados.";
+            header('Location: cad_estoque.php?acao=msg');
         }
         return $ok;
     }
