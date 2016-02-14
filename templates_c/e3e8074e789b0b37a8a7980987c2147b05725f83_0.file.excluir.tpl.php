@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-02-13 21:44:59
-  from "/var/www/htdocs/estoque-php-oop/view/departamento/alterar.tpl" */
+/* Smarty version 3.1.29, created on 2016-02-13 23:13:42
+  from "/var/www/htdocs/estoque-php-oop/view/estoques/excluir.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_56bfbffb38bd74_87531871',
+  'unifunc' => 'content_56bfd4c6ce08f8_15843794',
   'file_dependency' => 
   array (
-    'a0ad9c7ddecc533f6420a55ed53a9a63f7e2daf4' => 
+    'e3e8074e789b0b37a8a7980987c2147b05725f83' => 
     array (
-      0 => '/var/www/htdocs/estoque-php-oop/view/departamento/alterar.tpl',
-      1 => 1455407080,
+      0 => '/var/www/htdocs/estoque-php-oop/view/estoques/excluir.tpl',
+      1 => 1455412354,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:comum/base.tpl' => 1,
   ),
 ),false)) {
-function content_56bfbffb38bd74_87531871 ($_smarty_tpl) {
+function content_56bfd4c6ce08f8_15843794 ($_smarty_tpl) {
 ?>
 
 
@@ -35,20 +35,22 @@ function content_56bfbffb38bd74_87531871 ($_smarty_tpl) {
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <h1> Cadastro de Departamentos </h1>                
+                <h1> Cadastro de Estoques </h1>                
 
                 <div class="row">
 
-                    <form action="cad_dep.php?acao=atualizar" 
+                    <form action="cad_estoque.php?acao=excluirdefinitivo" 
                           method="post" 
-                          style="background-color: green">
-                        <h2>Alterar Departamento</h2>
-                        ID: <?php echo $_smarty_tpl->tpl_vars['dados']->value['id'];?>
- <input type="hidden" name="id" id="id" value="<?php echo $_smarty_tpl->tpl_vars['dados']->value['id'];?>
-">
-                        Descricao:<input type="text" name="descricao" id="descricao" value="<?php echo $_smarty_tpl->tpl_vars['dados']->value['descricao'];?>
-">
-                        <input type="submit" value="Alterar">
+                          style="background-color: yellow">
+                        <h2>Excluir</h2>
+                        Tem certeza que deseja excluir o registro <?php echo $_smarty_tpl->tpl_vars['dados']->value['id'];?>
+ ?
+                        
+                        <input type="hidden" name="id" id="id" value="<?php echo $_smarty_tpl->tpl_vars['dados']->value['id'];?>
+">    
+                        <button type="submit" class="btn btn-primary">SIM</button>
+                        
+                        <a href="cad_dep.php" class="btn btn-primary active" role="button">NAO</a>
                         <br>
                         <br>
                     </form>

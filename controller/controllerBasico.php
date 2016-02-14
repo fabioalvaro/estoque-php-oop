@@ -12,6 +12,8 @@ class controllerBasico {
     public $smarty;
 
     public function __construct() {
+        //Inicia sempre a sessao.
+        session_start();
         //parent::__construct();
 
 

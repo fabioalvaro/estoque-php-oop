@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-02-13 21:44:59
-  from "/var/www/htdocs/estoque-php-oop/view/departamento/alterar.tpl" */
+/* Smarty version 3.1.29, created on 2016-02-13 23:13:51
+  from "/var/www/htdocs/estoque-php-oop/view/estoques/alterar.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_56bfbffb38bd74_87531871',
+  'unifunc' => 'content_56bfd4cf61e265_27751145',
   'file_dependency' => 
   array (
-    'a0ad9c7ddecc533f6420a55ed53a9a63f7e2daf4' => 
+    'bbb98173518caf57e4b47639cf27405ce0e8bdd5' => 
     array (
-      0 => '/var/www/htdocs/estoque-php-oop/view/departamento/alterar.tpl',
-      1 => 1455407080,
+      0 => '/var/www/htdocs/estoque-php-oop/view/estoques/alterar.tpl',
+      1 => 1455412298,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:comum/base.tpl' => 1,
   ),
 ),false)) {
-function content_56bfbffb38bd74_87531871 ($_smarty_tpl) {
+function content_56bfd4cf61e265_27751145 ($_smarty_tpl) {
 ?>
 
 
@@ -35,11 +35,11 @@ function content_56bfbffb38bd74_87531871 ($_smarty_tpl) {
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <h1> Cadastro de Departamentos </h1>                
+                <h1> Cadastro de Estoques </h1>                
 
                 <div class="row">
 
-                    <form action="cad_dep.php?acao=atualizar" 
+                    <form action="cad_estoque.php?acao=atualizar" 
                           method="post" 
                           style="background-color: green">
                         <h2>Alterar Departamento</h2>

@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-02-13 22:29:53
-  from "/var/www/htdocs/estoque-php-oop/view/departamento/gridpadrao.tpl" */
+/* Smarty version 3.1.29, created on 2016-02-13 23:12:21
+  from "/var/www/htdocs/estoque-php-oop/view/estoques/gridpadrao.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_56bfca81c2d470_68008014',
+  'unifunc' => 'content_56bfd475ccdf64_22367785',
   'file_dependency' => 
   array (
-    'f339b25baed2aaefe6cdcff4b32287020cdd2381' => 
+    '3715237568159524fd3bae2b67bdc8d6787e0194' => 
     array (
-      0 => '/var/www/htdocs/estoque-php-oop/view/departamento/gridpadrao.tpl',
-      1 => 1455409789,
+      0 => '/var/www/htdocs/estoque-php-oop/view/estoques/gridpadrao.tpl',
+      1 => 1455412325,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_56bfca81c2d470_68008014 ($_smarty_tpl) {
+function content_56bfd475ccdf64_22367785 ($_smarty_tpl) {
 ?>
 <table border='1' class="table table-hover">
 <?php
@@ -46,9 +46,9 @@ $__foreach_rowinfo_0_saved_local_item = $_smarty_tpl->tpl_vars['rowinfo'];
 
         </td>
         <td>
-           <a href="cad_dep.php?acao=alterar&id=<?php echo $_smarty_tpl->tpl_vars['rowinfo']->value['id'];?>
+           <a href="cad_estoque.php?acao=alterar&id=<?php echo $_smarty_tpl->tpl_vars['rowinfo']->value['id'];?>
 ">Alterar</a> |
-           <a href="cad_dep.php?acao=excluir&id=<?php echo $_smarty_tpl->tpl_vars['rowinfo']->value['id'];?>
+           <a href="cad_estoque.php?acao=excluir&id=<?php echo $_smarty_tpl->tpl_vars['rowinfo']->value['id'];?>
 ">Excluir</a>
         </td>        
     </tr>

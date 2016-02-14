@@ -1,13 +1,13 @@
 <?php
 /**
- * Description of modelDepartamento
+ * Description of modelEstoques
  *
  * @author fabio
  */
 
-class modelDepartamento extends modelBasico {
+class modelEstoques extends modelBasico {
  
-    protected $tabela = 'departamentos';
+    protected $tabela = 'estoques';
     protected $id = 'id';
 
     public function listaCompleta() {
@@ -35,8 +35,8 @@ class modelDepartamento extends modelBasico {
         return $total_registros;
     }
 
-    public function setDepartamento($dados) {
-        //var_dump($dados);        die('opa');
+    public function setEstoques($dados) {
+       
 
         $query_insert = "INSERT INTO ".$this->tabela."(descricao)" .
                 " VALUES('" . $dados['descricao'] . "')";
@@ -46,29 +46,26 @@ class modelDepartamento extends modelBasico {
     }
     
     
-    public function updateDepartamento($dados) {       
+    public function updateEstoques($dados) {       
         $query_update =  'update '.$this->tabela.' set descricao="'.$dados['descricao'].'" '.
                 ' where id="'.$dados['id'].'"';
         $ret = mysql_query($query_update) or die(mysql_error());
         return $ret;
     }    
     
-    public function deleteDepartamento($dados) {       
+    public function deleteEstoques($dados) {       
         $query_update =  'delete from '.$this->tabela.
                 ' where id="'.$dados['id'].'"';
         $ret = mysql_query($query_update) or die(mysql_error());
         return $ret;
     }       
     
-    public function getDepartamentoById($id) {
+    public function getEstoquesById($id) {
 
 
         $query_get = "select * from " .$this->tabela.
                 " where ".$this->id."=".$id;
         
-        //echo $query_get;
-        //die();
-
         $result1 = mysql_query($query_get) or die(mysql_error());
         $result_dados = mysql_fetch_assoc($result1); //recupera a linha
         return $result_dados;

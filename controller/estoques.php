@@ -1,16 +1,14 @@
 <?php
 
 /**
- * Description of departamento
+ * Description of estroques
  *
  * @author fabio
  */
-class departamento extends controllerBasico {
+class estoques extends controllerBasico {
 
     // index do Controller
     public function index() {
-        //var_dump($_REQUEST);
-        //die('opa');
         $acao = isset($_REQUEST['acao']) ? $_REQUEST['acao'] : null;
         if ($acao == 'novo') {
             $this->novo();
@@ -31,7 +29,7 @@ class departamento extends controllerBasico {
             $this->smarty->assign("erro", $_SESSION['erro_msg']);
             $this->smarty->assign("frm_novo", $html_frm_novo);
             $this->smarty->assign("paginador", $this->paginador($pagina, 100));
-            $this->smarty->display('departamento/index.tpl');
+            $this->smarty->display('estoques/index.tpl');
             
         }elseif ($acao == 'atualizar') {
             $this->atualizar($_REQUEST);
@@ -47,81 +45,81 @@ class departamento extends controllerBasico {
             $this->smarty->assign("grid", $html_grid);
             $this->smarty->assign("frm_novo", $html_frm_novo);
             $this->smarty->assign("paginador", $this->paginador($pagina, 100));
-            $this->smarty->display('departamento/index.tpl');
+            $this->smarty->display('estoques/index.tpl');
         }
     }
 
     /**
-     * Funcao de Adicionar Departamentos
+     * Funcao de Adicionar Estoques
      */
     public function geraFormNovo() {
-        return $this->smarty->fetch('departamento/novo.tpl');
+        return $this->smarty->fetch('estoques/novo.tpl');
     }
 
     /**
-     * Funcao de Adicionar Departamentos
+     * Funcao de Adicionar Estoques
      */
     public function geraFormAlterar($request) {
         //var_dump($request);
 
-        $model = new modelDepartamento();
-        $registro = $model->getDepartamentoById($request['id']);
+        $model = new modelEstoques();
+        $registro = $model->getEstoquesById($request['id']);
 
         // var_dump($registro);
 
         $this->smarty->assign("dados", $registro);
-        $this->smarty->display('departamento/alterar.tpl');
+        $this->smarty->display('estoques/alterar.tpl');
     }
 
     /**
-     * Funcao de Adicionar Departamentos
+     * Funcao de Adicionar Estoques
      */
     public function geraFormExcluir($request) {
         //var_dump($request);
 
-        $model = new modelDepartamento();
-        $registro = $model->getDepartamentoById($request['id']);
+        $model = new modelEstoques();
+        $registro = $model->getEstoquesById($request['id']);
 
 
 
         $this->smarty->assign("dados", $registro);
-        $this->smarty->display('departamento/excluir.tpl');
+        $this->smarty->display('estoques/excluir.tpl');
     }
 
     /**
-     * Funcao de Adicionar Departamentos
+     * Funcao de Adicionar Estoques
      */
     public function salvar($postlocal) {
         //valida registro
         $okvalidacao = $this->validaRegistro($postlocal);
 
         if ($okvalidacao) {
-            $model = new modelDepartamento();
-            $model->setDepartamento($postlocal);
-            header('Location: cad_dep.php');
+            $model = new modelEstoques();
+            $model->setEstoques($postlocal);
+            header('Location: cad_estoque.php');
         }
     }
 
     public function atualizar($postlocal) {
-        $model = new modelDepartamento();
-        $model->updateDepartamento($postlocal);
-        header('Location: cad_dep.php');
+        $model = new modelEstoques();
+        $model->updateEstoques($postlocal);
+        header('Location: cad_estoque.php');
     }
 
     public function remover($postlocal) {
-        $model = new modelDepartamento();
-        $model->deleteDepartamento($postlocal);
-        header('Location: cad_dep.php');
+        $model = new modelEstoques();
+        $model->deleteEstoques($postlocal);
+        header('Location: cad_estoque.php');
     }
 
     /**
-     * Funcao de Adicionar Departamentos
+     * Funcao de Adicionar Estoques
      */
     public function editar() {
 
         $this->smarty->assign("msg", "editado com sucesso");
 
-        $this->smarty->display('departamento/index.tpl');
+        $this->smarty->display('estoques/index.tpl');
     }
 
     /**
@@ -131,12 +129,12 @@ class departamento extends controllerBasico {
      */
     public function geraGrid() {
 
-        $myModel = new modelDepartamento();
+        $myModel = new modelEstoques();
 
         $dados = $myModel->listaCompleta();
         $this->smarty->assign('data', $dados);
         $this->smarty->assign('tr', array('bgcolor="#eeeeee"', 'bgcolor="#dddddd"'));
-        return $this->smarty->fetch('departamento/gridpadrao.tpl');
+        return $this->smarty->fetch('estoques/gridpadrao.tpl');
     }
 
     /**
@@ -153,7 +151,7 @@ class departamento extends controllerBasico {
         if($msg_erro!="") {
             $ok = false;
             $_SESSION['erro_msg'] = $msg_erro. " Verifique os dados.";
-            header('Location: cad_dep.php?acao=erro');
+            header('Location: cad_estoque.php?acao=erro');
         }
         return $ok;
     }

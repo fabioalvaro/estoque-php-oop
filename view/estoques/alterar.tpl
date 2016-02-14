@@ -8,11 +8,11 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <h1> Cadastro de Departamentos </h1>                
+                <h1> Cadastro de Estoques </h1>                
 
                 <div class="row">
 
-                    <form action="cad_dep.php?acao=atualizar" 
+                    <form action="cad_estoque.php?acao=atualizar" 
                           method="post" 
                           style="background-color: green">
                         <h2>Alterar Departamento</h2>

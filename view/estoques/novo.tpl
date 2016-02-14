@@ -1,7 +1,7 @@
-<form class="form-horizontal" role="form" action="cad_dep.php?acao=salvar" 
+<form class="form-horizontal" role="form" action="cad_estoque.php?acao=salvar" 
       method="post" 
       style="background-color: grey">
-     <h2>Novo Departamento</h2>
+     <h2>Novo Estoques</h2>
     
   <div class="form-group">
     <label class="control-label col-sm-2" for="descricao">Descrição:</label>
