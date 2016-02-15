@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-02-13 23:12:21
+/* Smarty version 3.1.29, created on 2016-02-15 13:08:23
   from "/var/www/htdocs/estoque-php-oop/view/estoques/gridpadrao.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_56bfd475ccdf64_22367785',
+  'unifunc' => 'content_56c1e9e705de75_37803001',
   'file_dependency' => 
   array (
     '3715237568159524fd3bae2b67bdc8d6787e0194' => 
     array (
       0 => '/var/www/htdocs/estoque-php-oop/view/estoques/gridpadrao.tpl',
-      1 => 1455412325,
+      1 => 1455548898,
       2 => 'file',
     ),
   ),
@@ -19,9 +19,12 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_56bfd475ccdf64_22367785 ($_smarty_tpl) {
+function content_56c1e9e705de75_37803001 ($_smarty_tpl) {
 ?>
 <table border='1' class="table table-hover">
+    <th>id</th>
+    <th>descrição</th>
+    <th>ação</th>
 <?php
 $_from = $_smarty_tpl->tpl_vars['data']->value;
 if (!is_array($_from) && !is_object($_from)) {

@@ -35,6 +35,8 @@ class controllerBasico {
  
     public function paginador($pagina = 1, $totalRegistrosNaTabela = 0,$total_reg=5) {
         
+      
+        
         $html='';
         //maximo de registros por tela de paginacao
         $total_reg = $total_reg;
@@ -71,23 +73,21 @@ class controllerBasico {
         //decide ultima
         if ($maxpaginas == $pagina)
             $link_ultimo = "";
+
+  
+        
         else {
             $link_ultimo = $maxpaginas;
         }
-
-        //$label_total = ' Total de Registros: ' . $totalRegistrosNaTabela;
-
-        // Monta a barra de Navegacao        
-        //$html .= $link_primeiro . "  |  " . $link_anterior . " | " . $link_posterior . " | " . $link_ultimo . " " . $label_total;
-        
        
         $this->smarty->assign("link_pri", $link_primeiro);
         $this->smarty->assign("link_ant", $link_anterior);
         $this->smarty->assign("link_pos", $link_posterior);
         $this->smarty->assign("link_ult", $link_ultimo);
  
+       
         
-        $this->smarty->assign("total", $totalRegistrosNaTabela);
+        $this->smarty->assign("totaln", $totalRegistrosNaTabela);
         $html_final = $this->smarty->fetch("comum/paginador.tpl");
         
         return  $html_final;

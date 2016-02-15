@@ -6,9 +6,11 @@
  * @author fabio
  */
 class departamento extends controllerBasico {
-    private $paginacao_max =3; //Registro as serem exibidos
+
+    private $paginacao_max = 3; //Registro as serem exibidos
 
     // index do Controller
+
     public function index() {
 
         $acao = isset($_REQUEST['acao']) ? $_REQUEST['acao'] : null;
@@ -27,7 +29,6 @@ class departamento extends controllerBasico {
                 unset($_SESSION['msg']);
             }
             //$pagina = 1;
-            
             // verifico se veio por get o numero da pagina
             $_SESSION['pagina'] = isset($_GET['pagina']) ? $_GET['pagina'] : null;
             $pagina = $_SESSION['pagina'];
@@ -36,8 +37,10 @@ class departamento extends controllerBasico {
             //Paginador
             $model = new modelDepartamento();
             $total_registros_da_tabela = $model->total();
-            
-            $html_paginador = $this->paginador($pagina,$total_registros_da_tabela,  $this->paginacao_max);
+            // echo $total_registros_da_tabela;
+
+            $html_paginador = $this->paginador($pagina, $total_registros_da_tabela, $this->paginacao_max);
+             $this->smarty->assign("paginador", $html_paginador);
             $html_frm_novo = $this->geraFormNovo();
 
             $msg = isset($_SESSION['msg']) ? $_SESSION['msg'] : "";
@@ -46,7 +49,7 @@ class departamento extends controllerBasico {
             $this->smarty->assign("grid", $html_grid_paginado);
             $this->smarty->assign("paginador", $html_paginador);
             $this->smarty->assign("frm_novo", $html_frm_novo);
-            $this->smarty->assign("paginador", $this->paginador($pagina, 100));
+           
             $this->smarty->display('departamento/index.tpl');
         }
     }
@@ -62,9 +65,9 @@ class departamento extends controllerBasico {
      * Funcao de Adicionar Departamentos
      */
     public function geraFormAlterar($request) {
-        
+
         $model = new modelDepartamento();
-        $registro = $model->getDepartamentoById($request['id']);     
+        $registro = $model->getDepartamentoById($request['id']);
 
         $this->smarty->assign("dados", $registro);
         $this->smarty->display('departamento/alterar.tpl');
@@ -120,46 +123,33 @@ class departamento extends controllerBasico {
         $myModel = new modelDepartamento();
 
         $dados = $myModel->listaCompleta();
-        $this->smarty->assign('data', $dados);
-        $this->smarty->assign('tr', array('bgcolor="#eeeeee"', 'bgcolor="#dddddd"'));
+        $this->smarty->assign('data', $dados);        
         return $this->smarty->fetch('departamento/gridpadrao.tpl');
     }
-    
+
     /**
      * 
      * @param type $dados
      * @return type
      */
-    
     public function geraGridpaginado() {
-        
-    $total_reg = $this->paginacao_max; // número de registros por página
-
-    $pagina = $_SESSION['pagina'];
-
-    //Current Page / Pagina Atual
-    if (!$pagina) {
-        $pc = "1";
-    } else {
-        $pc = $pagina;
+        $total_reg = $this->paginacao_max; // número de registros por página
+        $pagina = $_SESSION['pagina'];
+        //Current Page / Pagina Atual
+        if (!$pagina) {
+            $pc = "1";
+        } else {
+            $pc = $pagina;
+        }
+        $inicio = $pc - 1;
+        $inicio = $inicio * $total_reg;
+        //Busca os registros para o Grid
+        $myModel = new modelDepartamento();
+        $dados_paginados = $myModel->listaCompletaPaginada($inicio, $total_reg);
+        // Total de Registros na tabela 
+        $this->smarty->assign('data', $dados_paginados);
+        return $this->smarty->fetch('departamento/gridpadrao.tpl');
     }
-
-    $inicio = $pc - 1;
-    $inicio = $inicio * $total_reg;
-
-    //Busca os registros para o Grid
-    $myModel = new modelDepartamento();
-
-   
-    $dados_paginados =$myModel->listaCompletaPaginada($inicio,$total_reg);
-
-
-    // Total de Registros na tabela 
-        
-        $this->smarty->assign('data', $dados_paginados);        
-        return $this->smarty->fetch('departamento/gridpadrao.tpl');        
-     
-    }    
 
     /**
      * 

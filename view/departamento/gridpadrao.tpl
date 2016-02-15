@@ -1,4 +1,7 @@
 <table border='1' class="table table-hover">
+    <th>id</th>
+    <th>descrição</th>
+    <th>ação</th>
 {foreach $data as $num => $rowinfo}
     <tr>
         <td>

@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-02-15 11:13:27
+/* Smarty version 3.1.29, created on 2016-02-15 12:59:44
   from "/var/www/htdocs/estoque-php-oop/view/comum/paginador.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_56c1cef75522e5_55328609',
+  'unifunc' => 'content_56c1e7e0c6cd43_49384403',
   'file_dependency' => 
   array (
     '09acdaf88932e5aaa41b3f29eba45c69f7563f75' => 
     array (
       0 => '/var/www/htdocs/estoque-php-oop/view/comum/paginador.tpl',
-      1 => 1455541985,
+      1 => 1455548382,
       2 => 'file',
     ),
   ),
@@ -19,55 +19,57 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_56c1cef75522e5_55328609 ($_smarty_tpl) {
+function content_56c1e7e0c6cd43_49384403 ($_smarty_tpl) {
 ?>
 <div class="row"> 
-    
+    <ul class="pagination pagination-lg">
+        
     <?php if ($_smarty_tpl->tpl_vars['link_pri']->value == '') {?>
-            <<
+            <li class="disabled"> <a href="#"> << </a> </li>
     <?php } else { ?>
-           <a href='?pagina=<?php echo $_smarty_tpl->tpl_vars['link_pri']->value;?>
-'><<</a>
-    <?php }?>    
-    
-    
-    |
-    
-    <?php if ($_smarty_tpl->tpl_vars['link_ant']->value == '') {?>
-            <
-    <?php } else { ?>
-           <a href='?pagina=<?php echo $_smarty_tpl->tpl_vars['link_ant']->value;?>
-'> < </a>
-    <?php }?>      
-    
-   
-    
-    
-    | 
-
-    
-    <?php if ($_smarty_tpl->tpl_vars['link_pos']->value == '') {?>
-            >
-    <?php } else { ?>
-           <a href='?pagina=<?php echo $_smarty_tpl->tpl_vars['link_pos']->value;?>
-'> > </a>
+            <li> <a href='?pagina=<?php echo $_smarty_tpl->tpl_vars['link_pri']->value;?>
+'> << </a> </li>
     <?php }?>     
     
-    | 
+    
+
+    
+    <?php if ($_smarty_tpl->tpl_vars['link_ant']->value == '') {?>
+            <li class="disabled"><a href="#"> < </a></li>
+    <?php } else { ?>
+           <li><a href='?pagina=<?php echo $_smarty_tpl->tpl_vars['link_ant']->value;?>
+'> < </a></li>
+    <?php }?>      
+    
+ 
+    
+    <?php if ($_smarty_tpl->tpl_vars['link_pos']->value == '') {?>
+            <li class="disabled"><a href="#">></a></li>
+    <?php } else { ?>
+          <li><a href='?pagina=<?php echo $_smarty_tpl->tpl_vars['link_pos']->value;?>
+'> > </a></li>
+    <?php }?>     
+    
+    
     
     <?php if ($_smarty_tpl->tpl_vars['link_ult']->value == '') {?>
-            >>
+           <li class="disabled"><a href="#"> >></a></li>
     <?php } else { ?>
-           <a href='?pagina=<?php echo $_smarty_tpl->tpl_vars['link_ult']->value;?>
-'> >> </a>
-    <?php }?>       
+          <li> <a href='?pagina=<?php echo $_smarty_tpl->tpl_vars['link_ult']->value;?>
+'> >> </a></li>
+    <?php }?>    
     
-    
-    Total de Registros: <?php echo $_smarty_tpl->tpl_vars['total']->value;?>
+    <li class="disabled"><a href="#">  Total de Registros: <?php echo $_smarty_tpl->tpl_vars['totaln']->value;?>
+ </a></li>
+    </ul>
 
     
     
 </div>
+        
+   
         <hr>
-        <?php }
+        
+        
+ <?php }
 }

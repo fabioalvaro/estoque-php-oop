@@ -19,7 +19,7 @@ class modelDepartamento extends modelBasico {
     public function listaCompleta() {
         // Busca os registros para o Grid
 
-        $busca = 'SELECT * from '.$this->tabela;
+        $busca = 'SELECT * FROM '.$this->tabela;
         $qry_limitada = mysql_query($busca);
         $linha = mysql_fetch_assoc($qry_limitada);
 
@@ -39,7 +39,7 @@ class modelDepartamento extends modelBasico {
      */
     public function listaCompletaPaginada($inicio,$total_reg=10) {
 
-        $busca = 'SELECT * from '.$this->tabela. ' LIMIT '.$inicio.','.$total_reg;
+        $busca = 'SELECT * FROM '.$this->tabela. ' LIMIT '.$inicio.','.$total_reg;
       
         $qry_limitada = mysql_query($busca);
         $linha = mysql_fetch_assoc($qry_limitada);
@@ -58,7 +58,7 @@ class modelDepartamento extends modelBasico {
      */
     public function total() {
         // Total de Registros na tabela    
-        $qry_total = mysql_query('SELECT count(*)as total from '.$this->tabela);
+        $qry_total = mysql_query('SELECT count(*)as total FROM '.$this->tabela);
         $linha_total = mysql_fetch_assoc($qry_total); //recupera a linha
         $total_registros = $linha_total['total']; //pega o valor  
         return $total_registros;
