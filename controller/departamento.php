@@ -11,9 +11,7 @@ class departamento extends controllerBasico {
     public function index() {
 
         $acao = isset($_REQUEST['acao']) ? $_REQUEST['acao'] : null;
-        if ($acao == 'novo') {
-            $this->novo();
-        } elseif ($acao == 'alterar') {
+        if ($acao == 'alterar') {
             $this->geraFormAlterar($_REQUEST);
         } elseif ($acao == 'excluir') {
             $this->geraFormExcluir($_REQUEST);
