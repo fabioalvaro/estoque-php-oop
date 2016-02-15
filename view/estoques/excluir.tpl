@@ -1,8 +1,4 @@
-
-
-
 {include file='comum/topo.tpl' }
-
 <!-- Page Content -->
 <div id="page-content-wrapper">
     <div class="container-fluid">
@@ -35,5 +31,4 @@
     </div>
 </div>
 <!-- /#page-content-wrapper -->
-
 {include file='comum/base.tpl' }

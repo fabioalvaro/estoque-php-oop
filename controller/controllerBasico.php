@@ -14,9 +14,6 @@ class controllerBasico {
     public function __construct() {
         //Inicia sempre a sessao.
         session_start();
-        //parent::__construct();
-
-
         /* Carregando Smarty */
         $this->smarty = new Smarty;
         $this->smarty->cache_lifetime = 120;

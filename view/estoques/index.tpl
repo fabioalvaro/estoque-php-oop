@@ -8,7 +8,8 @@
                 <h1> Cadastro de Estoques</h1>                  
                 {if $mensagem neq "" }
                 <div class="alert alert-danger" role="alert">
-                  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                  <span class="glyphicon glyphicon-exclamation-sign" 
+                        aria-hidden="true"></span>
                   <span class="sr-only">Aviso:</span>
                   {$mensagem|default:""}
                 </div>

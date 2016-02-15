@@ -29,7 +29,7 @@ class departamento extends controllerBasico {
             }
             $pagina = 1;
 
-            $html_grid = $this->geraGrid();
+            $html_grid = $this->geraGridpaginado();
             $html_frm_novo = $this->geraFormNovo();
 
             $msg = isset($_SESSION['msg']) ? $_SESSION['msg'] : "";
@@ -115,6 +115,46 @@ class departamento extends controllerBasico {
         $this->smarty->assign('tr', array('bgcolor="#eeeeee"', 'bgcolor="#dddddd"'));
         return $this->smarty->fetch('departamento/gridpadrao.tpl');
     }
+    
+    /**
+     * 
+     * @param type $dados
+     * @return type
+     */
+    
+    public function geraGridpaginado() {
+        
+    $total_reg = "3"; // número de registros por página
+
+    $pagina = $_SESSION['pagina'];
+
+    //Current Page / Pagina Atual
+    if (!$pagina) {
+        $pc = "1";
+    } else {
+        $pc = $pagina;
+    }
+
+    $inicio = $pc - 1;
+    $inicio = $inicio * $total_reg;
+
+    //Busca os registros para o Grid
+    $myModel = new modelDepartamento();
+
+       // $dados = 
+   
+    $qry_limitada =$myModel->listaCompletaPaginada($inicio,$total_reg);
+    $linha = mysql_fetch_assoc($qry_limitada);
+
+    // Total de Registros na tabela    
+
+    $total_registros = $myModel->total();
+    
+        $this->smarty->assign('data', $dados);
+        $this->smarty->assign('tr', array('bgcolor="#eeeeee"', 'bgcolor="#dddddd"'));
+        return $this->smarty->fetch('departamento/gridpadrao.tpl');    
+     
+    }    
 
     /**
      * 

@@ -175,6 +175,7 @@ return array(
     'controllerBasico' => $baseDir . '/controller/controllerBasico.php',
     'departamento' => $baseDir . '/controller/departamento.php',
     'estoques' => $baseDir . '/controller/estoques.php',
+    'home' => $baseDir . '/controller/home.php',
     'modelBasico' => $baseDir . '/model/modelBasico.php',
     'modelDepartamento' => $baseDir . '/model/modelDepartamento.php',
     'modelEstoques' => $baseDir . '/model/modelEstoques.php',

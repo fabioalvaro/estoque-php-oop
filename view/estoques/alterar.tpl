@@ -1,6 +1,3 @@
-
-
-
 {include file='comum/topo.tpl' }
 
 <!-- Page Content -->

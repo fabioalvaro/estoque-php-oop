@@ -54,7 +54,7 @@ class estoques extends controllerBasico {
      * Funcao de Adicionar Estoques
      */
     public function geraFormAlterar($request) {
-        //var_dump($request);
+        
 
         $model = new modelEstoques();
         $registro = $model->getEstoquesById($request['id']);
@@ -69,8 +69,7 @@ class estoques extends controllerBasico {
      * Funcao de Adicionar Estoques
      */
     public function geraFormExcluir($request) {
-        //var_dump($request);
-
+        
         $model = new modelEstoques();
         $registro = $model->getEstoquesById($request['id']);
 
@@ -84,16 +83,21 @@ class estoques extends controllerBasico {
      * Funcao de Adicionar Estoques
      */
     public function salvar($postlocal) {
-        //valida registro
+        //valida registro vindo pelo post
         $okvalidacao = $this->validaRegistro($postlocal);
 
         if ($okvalidacao) {
+            //Persistir o registro no banco
             $model = new modelEstoques();
             $model->setEstoques($postlocal);
             header('Location: cad_estoque.php');
         }
     }
-
+    
+    /**
+     * Recebe o post e atualiza o registro no banco de dados
+     * @param type $postlocal POST do HTTP
+     */
     public function atualizar($postlocal) {
         $model = new modelEstoques();
         $model->updateEstoques($postlocal);
@@ -101,6 +105,10 @@ class estoques extends controllerBasico {
         header('Location: cad_estoque.php?acao=msg');
     }
 
+    /**
+     * Remove o registro de banco de dados
+     * @param type $postlocal $_POST
+     */
     public function remover($postlocal) {
         $model = new modelEstoques();
         $model->deleteEstoques($postlocal);
@@ -110,29 +118,29 @@ class estoques extends controllerBasico {
 
 
     /**
-     * 
-     * @param type $dados
-     * @return type
+     * Retorna um html de uma tabela baseada em um conjunto de dataset
+     * da entidade principal
+     * @return type HTML
      */
     public function geraGrid() {
 
         $myModel = new modelEstoques();
 
         $dados = $myModel->listaCompleta();
-        $this->smarty->assign('data', $dados);
-        $this->smarty->assign('tr', array('bgcolor="#eeeeee"', 'bgcolor="#dddddd"'));
+        $this->smarty->assign('data', $dados);        
         return $this->smarty->fetch('estoques/gridpadrao.tpl');
     }
 
     /**
+     * Funcao que valida os campos enviados pelo metodo de post
      * 
-     * @param type $dados
-     * @return type
+     * @param type $registro variavel $_POST ou $_REQUEST
+     * @return boolean verdadeiro tudo ok
      */
     public function validaRegistro($registro) {
         $ok = true;
         $msg_erro="";
-        
+        //valida a descricao
         if ($registro['descricao']==="") {$msg_erro.="O Campo Descrição é obrigatorio! ";} 
         
         if($msg_erro!="") {

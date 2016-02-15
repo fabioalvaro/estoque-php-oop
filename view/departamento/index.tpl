@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1> Cadastro de Departamentos</h1>                  
-                {if $mensagem neq "" }
+                {if $mensagem|default:"" neq "" }
                 <div class="alert alert-danger" role="alert">
                   <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                   <span class="sr-only">Aviso:</span>

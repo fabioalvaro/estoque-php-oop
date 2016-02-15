@@ -6,7 +6,8 @@
   <div class="form-group">
     <label class="control-label col-sm-2" for="descricao">Descrição:</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="descricao" name="descricao" placeholder="Enter the description">
+      <input type="text" class="form-control" id="descricao" name="descricao"
+             placeholder="Enter the description">
     </div>
   </div>
    
