@@ -34,12 +34,13 @@ class modelDepartamento extends modelBasico {
     /**
      * Retorna um conjunto limitado de dados (Dataset)
      * @param integer $inicio registro inicial
-     * @param integer $total_reg total de registros no banco
+     * @param integer $total_reg total de registros a serem exibidos padrao =10
      * @return array dataset limitado
      */
-    public function listaCompletaPaginada($inicio,$total_reg) {
+    public function listaCompletaPaginada($inicio,$total_reg=10) {
 
-        $busca = 'SELECT * from '.$this->tabela. 'LIMIT '.$inicio.','.$total_reg;
+        $busca = 'SELECT * from '.$this->tabela. ' LIMIT '.$inicio.','.$total_reg;
+      
         $qry_limitada = mysql_query($busca);
         $linha = mysql_fetch_assoc($qry_limitada);
 

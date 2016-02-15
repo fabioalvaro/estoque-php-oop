@@ -6,6 +6,7 @@
  * @author fabio
  */
 class departamento extends controllerBasico {
+    private $paginacao_max =3; //Registro as serem exibidos
 
     // index do Controller
     public function index() {
@@ -25,15 +26,25 @@ class departamento extends controllerBasico {
             if ($acao == null) {
                 unset($_SESSION['msg']);
             }
-            $pagina = 1;
+            //$pagina = 1;
+            
+            // verifico se veio por get o numero da pagina
+            $_SESSION['pagina'] = isset($_GET['pagina']) ? $_GET['pagina'] : null;
+            $pagina = $_SESSION['pagina'];
 
-            $html_grid = $this->geraGridpaginado();
+            $html_grid_paginado = $this->geraGridpaginado();
+            //Paginador
+            $model = new modelDepartamento();
+            $total_registros_da_tabela = $model->total();
+            
+            $html_paginador = $this->paginador($pagina,$total_registros_da_tabela,  $this->paginacao_max);
             $html_frm_novo = $this->geraFormNovo();
 
             $msg = isset($_SESSION['msg']) ? $_SESSION['msg'] : "";
             $this->smarty->assign("mensagem", $msg);
 
-            $this->smarty->assign("grid", $html_grid);
+            $this->smarty->assign("grid", $html_grid_paginado);
+            $this->smarty->assign("paginador", $html_paginador);
             $this->smarty->assign("frm_novo", $html_frm_novo);
             $this->smarty->assign("paginador", $this->paginador($pagina, 100));
             $this->smarty->display('departamento/index.tpl');
@@ -122,7 +133,7 @@ class departamento extends controllerBasico {
     
     public function geraGridpaginado() {
         
-    $total_reg = "3"; // número de registros por página
+    $total_reg = $this->paginacao_max; // número de registros por página
 
     $pagina = $_SESSION['pagina'];
 
@@ -139,18 +150,14 @@ class departamento extends controllerBasico {
     //Busca os registros para o Grid
     $myModel = new modelDepartamento();
 
-       // $dados = 
    
-    $qry_limitada =$myModel->listaCompletaPaginada($inicio,$total_reg);
-    $linha = mysql_fetch_assoc($qry_limitada);
+    $dados_paginados =$myModel->listaCompletaPaginada($inicio,$total_reg);
 
-    // Total de Registros na tabela    
 
-    $total_registros = $myModel->total();
-    
-        $this->smarty->assign('data', $dados);
-        $this->smarty->assign('tr', array('bgcolor="#eeeeee"', 'bgcolor="#dddddd"'));
-        return $this->smarty->fetch('departamento/gridpadrao.tpl');    
+    // Total de Registros na tabela 
+        
+        $this->smarty->assign('data', $dados_paginados);        
+        return $this->smarty->fetch('departamento/gridpadrao.tpl');        
      
     }    
 
