@@ -34,9 +34,7 @@ class controllerBasico {
  */
  
     public function paginador($pagina = 1, $totalRegistrosNaTabela = 0,$total_reg=5) {
-        
-      
-        
+               
         $html='';
         //maximo de registros por tela de paginacao
         $total_reg = $total_reg;

@@ -6,6 +6,7 @@
  * @author fabio
  */
 class estoques extends controllerBasico {
+    private $paginacao_max = 3; // Registro as serem exibidos por página
 
     // index do Controller
     public function index() {
@@ -22,7 +23,9 @@ class estoques extends controllerBasico {
             $this->salvar($_POST);
         } elseif ($acao == null || $acao == 'msg') {
            
-            $pagina = 1;
+             // verifico se veio por get o numero da pagina
+            $_SESSION['pagina'] = isset($_GET['pagina']) ? $_GET['pagina'] : null;
+            $pagina = $_SESSION['pagina'];
 
             $html_grid = $this->geraGrid();
             $html_frm_novo = $this->geraFormNovo();
@@ -31,12 +34,22 @@ class estoques extends controllerBasico {
             
             $msg= isset($_SESSION['msg'])?$_SESSION['msg']:"";
             
-            $this->smarty->assign("mensagem", $msg);            
+            $this->smarty->assign("mensagem", $msg);     
+            
+            //Grid Paginado
+            $html_grid_paginado = $this->geraGridpaginado();
+            $this->smarty->assign("grid", $html_grid_paginado);
+            
+            //Paginador
+            $model = new modelEstoques();
+            $total_registros_da_tabela = $model->total();
+            $html_paginador = $this->paginador($pagina, $total_registros_da_tabela, $this->paginacao_max);
+            $this->smarty->assign("paginador", $html_paginador);             
           
            
-            $this->smarty->assign("grid", $html_grid);
+            
             $this->smarty->assign("frm_novo", $html_frm_novo);
-            $this->smarty->assign("paginador", $this->paginador($pagina, 100));
+
             $this->smarty->display('estoques/index.tpl');
         }
     }
@@ -128,6 +141,30 @@ class estoques extends controllerBasico {
         $this->smarty->assign('data', $dados);        
         return $this->smarty->fetch('estoques/gridpadrao.tpl');
     }
+    
+    /**
+     * 
+     * @param type $dados
+     * @return type
+     */
+    public function geraGridpaginado() {
+        $total_reg = $this->paginacao_max; // número de registros por página
+        $pagina = $_SESSION['pagina'];
+        //Current Page / Pagina Atual
+        if (!$pagina) {
+            $pc = "1";
+        } else {
+            $pc = $pagina;
+        }
+        $inicio = $pc - 1;
+        $inicio = $inicio * $total_reg;
+        //Busca os registros para o Grid
+        $myModel = new modelDepartamento();
+        $dados_paginados = $myModel->listaCompletaPaginada($inicio, $total_reg);
+        // Total de Registros na tabela 
+        $this->smarty->assign('data', $dados_paginados);
+        return $this->smarty->fetch('departamento/gridpadrao.tpl');
+    }    
 
     /**
      * Funcao que valida os campos enviados pelo metodo de post

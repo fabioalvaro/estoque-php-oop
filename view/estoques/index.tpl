@@ -20,7 +20,7 @@
                 
                 </div>
                 <div class="row">{$grid}</div>
-
+                <div class="row">{$paginador}</div>
 
             </div>
         </div>
