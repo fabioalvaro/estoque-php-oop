@@ -7,7 +7,7 @@
  */
 class departamento extends controllerBasico {
 
-    private $paginacao_max = 3; //Registro as serem exibidos
+    private $paginacao_max = 3; // Registro as serem exibidos por página
 
     // index do Controller
 
@@ -25,31 +25,31 @@ class departamento extends controllerBasico {
         } elseif ($acao == 'salvar') {
             $this->salvar($_POST);
         } elseif ($acao == null || $acao == 'msg') {
-            if ($acao == null) {
-                unset($_SESSION['msg']);
-            }
-            //$pagina = 1;
+            
             // verifico se veio por get o numero da pagina
             $_SESSION['pagina'] = isset($_GET['pagina']) ? $_GET['pagina'] : null;
             $pagina = $_SESSION['pagina'];
 
+            //Grid Paginado
             $html_grid_paginado = $this->geraGridpaginado();
+            $this->smarty->assign("grid", $html_grid_paginado);
+            
             //Paginador
             $model = new modelDepartamento();
             $total_registros_da_tabela = $model->total();
-            // echo $total_registros_da_tabela;
-
             $html_paginador = $this->paginador($pagina, $total_registros_da_tabela, $this->paginacao_max);
-             $this->smarty->assign("paginador", $html_paginador);
+            $this->smarty->assign("paginador", $html_paginador);            
+            
+            //Form Novo
             $html_frm_novo = $this->geraFormNovo();
-
-            $msg = isset($_SESSION['msg']) ? $_SESSION['msg'] : "";
-            $this->smarty->assign("mensagem", $msg);
-
-            $this->smarty->assign("grid", $html_grid_paginado);
-            $this->smarty->assign("paginador", $html_paginador);
             $this->smarty->assign("frm_novo", $html_frm_novo);
-           
+            
+            //Sistema de Mensagens
+            if ($acao == null) { unset($_SESSION['msg']);}
+            $msg = isset($_SESSION['msg']) ? $_SESSION['msg'] : "";
+            $this->smarty->assign("mensagem", $msg);           
+            
+            //Chama o Template depois de ter passado as variaveis
             $this->smarty->display('departamento/index.tpl');
         }
     }
