@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-02-15 09:16:12
-  from "/var/www/htdocs/estoque-php-oop/view/estoques/novo.tpl" */
+/* Smarty version 3.1.29, created on 2016-02-15 09:16:13
+  from "/var/www/htdocs/estoque-php-oop/view/produtos/novo.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_56c1b37c755cb5_29168973',
+  'unifunc' => 'content_56c1b37dd69314_34675853',
   'file_dependency' => 
   array (
-    'a0e0f2147ec167ae168558aca458a248171301d3' => 
+    '7bc3ca1415b57e83ce499f0587858445d01913a8' => 
     array (
-      0 => '/var/www/htdocs/estoque-php-oop/view/estoques/novo.tpl',
-      1 => 1455531248,
+      0 => '/var/www/htdocs/estoque-php-oop/view/produtos/novo.tpl',
+      1 => 1455534747,
       2 => 'file',
     ),
   ),
@@ -19,12 +19,12 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_56c1b37c755cb5_29168973 ($_smarty_tpl) {
+function content_56c1b37dd69314_34675853 ($_smarty_tpl) {
 ?>
-<form class="form-horizontal" role="form" action="cad_estoque.php?acao=salvar" 
+<form class="form-horizontal" role="form" action="cad_prod.php?acao=salvar" 
       method="post" 
       style="background-color: grey">
-     <h2>Novo Estoques</h2>
+     <h2>Novo produtos</h2>
     
   <div class="form-group">
     <label class="control-label col-sm-2" for="descricao">Descrição:</label>

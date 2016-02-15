@@ -18,7 +18,7 @@ class controllerBasico {
         $this->smarty = new Smarty;
         $this->smarty->cache_lifetime = 120;
         $this->smarty->caching = false;
-        $this->smarty->setTemplateDir('/var/www/htdocs/estoque-php-oop/view/');
+        $this->smarty->setTemplateDir('./view/');
     }
     
     public function ShowMessage($mensagem=""){

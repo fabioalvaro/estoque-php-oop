@@ -179,4 +179,6 @@ return array(
     'modelBasico' => $baseDir . '/model/modelBasico.php',
     'modelDepartamento' => $baseDir . '/model/modelDepartamento.php',
     'modelEstoques' => $baseDir . '/model/modelEstoques.php',
+    'modelProdutos' => $baseDir . '/model/modelProdutos.php',
+    'produtos' => $baseDir . '/controller/produtos.php',
 );

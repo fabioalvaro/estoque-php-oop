@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-02-15 09:16:12
-  from "/var/www/htdocs/estoque-php-oop/view/estoques/index.tpl" */
+/* Smarty version 3.1.29, created on 2016-02-15 09:16:13
+  from "/var/www/htdocs/estoque-php-oop/view/produtos/index.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_56c1b37c7663c8_59362671',
+  'unifunc' => 'content_56c1b37dd7a1c8_06674599',
   'file_dependency' => 
   array (
-    '1ceca32b1a7de05666debadb4f5d51b0e441930d' => 
+    'f96adb505adc26c663217d0ef4c2d028475294b6' => 
     array (
-      0 => '/var/www/htdocs/estoque-php-oop/view/estoques/index.tpl',
-      1 => 1455531249,
+      0 => '/var/www/htdocs/estoque-php-oop/view/produtos/index.tpl',
+      1 => 1455534733,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:comum/base.tpl' => 1,
   ),
 ),false)) {
-function content_56c1b37c7663c8_59362671 ($_smarty_tpl) {
+function content_56c1b37dd7a1c8_06674599 ($_smarty_tpl) {
 $_smarty_tpl->smarty->ext->_subtemplate->render($_smarty_tpl, "file:comum/topo.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
@@ -31,7 +31,7 @@ $_smarty_tpl->smarty->ext->_subtemplate->render($_smarty_tpl, "file:comum/topo.t
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <h1> Cadastro de Estoques</h1>                  
+                <h1> Cadastro de Produtos</h1>                  
                 <?php if ($_smarty_tpl->tpl_vars['mensagem']->value != '') {?>
                 <div class="alert alert-danger" role="alert">
                   <span class="glyphicon glyphicon-exclamation-sign" 
